@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زبّطها | اطلب مرة.. يردّ عليك كل الحرفية</title>
+<meta name="description" content="زبّطها - منصة مصرية لطلب عروض أسعار من فنيين ومزودي خدمات محليين في مكان واحد: نقل عفش، سباكة، كهرباء، تكييف، تدريس خصوصي، تصوير وأكثر.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rakkas&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand: #F6F1E4;
+    --sand-2: #EFE7D2;
+    --ink: #23201A;
+    --ink-soft: #57503F;
+    --teal: #0E5C55;
+    --teal-dark: #0A423C;
+    --mango: #E3A23C;
+    --mango-dark: #C4811F;
+    --maroon: #A6402C;
+    --maroon-dark: #7E2E1F;
+    --white: #FFFCF6;
+    --line: rgba(35,32,26,0.14);
+    --radius: 14px;
+    --shadow: 0 10px 30px rgba(20,20,10,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Cairo', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Rakkas', serif;
+    font-weight:400;
+    line-height:1.25;
+    letter-spacing:0.3px;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  button{font-family:inherit; cursor:pointer;}
+  :focus-visible{outline:3px solid var(--mango); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- khayamiya stripe divider (signature element) ---------- */
+  .stripe-divider{
+    height:14px;
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--maroon) 0 10px,
+      var(--mango) 10px 20px,
+      var(--teal) 20px 30px,
+      var(--sand-2) 30px 34px
+    );
+    background-size: 200% 100%;
+  }
+  .stripe-thin{
+    height:6px;
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--teal) 0 8px,
+      var(--mango) 8px 16px
+    );
+    opacity:0.85;
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; color:var(--teal-dark);
+    background:rgba(14,92,85,0.09);
+    border:1px solid rgba(14,92,85,0.25);
+    padding:6px 14px; border-radius:999px; letter-spacing:0.3px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,241,228,0.92);
+    backdrop-filter:saturate(160%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Rakkas',serif; font-size:26px; color:var(--maroon-dark);
+  }
+  .logo .dot{
+    width:10px; height:10px; border-radius:50%; background:var(--mango);
+    box-shadow:0 0 0 4px rgba(227,162,60,0.25);
+  }
+  .nav-links{display:flex; gap:26px; align-items:center;}
+  .nav-links a{font-weight:600; font-size:15px; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover, .nav-links a.active{color:var(--teal-dark);}
+  .nav-cta{
+    background:var(--maroon); color:var(--white); border:none;
+    padding:10px 20px; border-radius:10px; font-weight:700; font-size:14px;
+    box-shadow:var(--shadow);
+    transition:transform .15s, background .15s;
+  }
+  .nav-cta:hover{background:var(--maroon-dark); transform:translateY(-1px);}
+  .nav-toggle{display:none; background:none; border:none; font-size:26px; color:var(--ink);}
+
+  @media (max-width:840px){
+    .nav-links{
+      position:absolute; top:100%; right:0; left:0; background:var(--sand);
+      flex-direction:column; align-items:stretch; padding:10px 24px 18px; gap:6px;
+      border-bottom:1px solid var(--line); display:none;
+    }
+    .nav-links.open{display:flex;}
+    .nav-links a{padding:10px 4px; border-bottom:1px solid var(--line);}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Sections generic ---------- */
+  section{padding:74px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:34px; margin:10px 0 12px; color:var(--ink);}
+  .section-head p{color:var(--ink-soft); font-size:16px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:64px; padding-bottom:0;
+    position:relative; overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.1fr 0.95fr; gap:50px; align-items:center;
+  }
+  .hero h1{
+    font-size:56px; color:var(--ink); margin:14px 0 18px;
+  }
+  .hero h1 span{color:var(--maroon);}
+  .hero p.lead{font-size:18px; color:var(--ink-soft); max-width:480px; margin-bottom:28px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px; border-radius:12px; font-weight:700; font-size:15px;
+    border:2px solid transparent; transition:transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary{background:var(--maroon); color:var(--white); box-shadow:var(--shadow);}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--maroon-dark);}
+  .btn-outline{background:transparent; border-color:var(--teal); color:var(--teal-dark);}
+  .btn-outline:hover{background:rgba(14,92,85,0.08);}
+  .btn-ghost{background:var(--sand-2); color:var(--ink);}
+  .btn-sm{padding:9px 16px; font-size:13px; border-radius:9px;}
+  .trust-row{display:flex; gap:26px; color:var(--ink-soft); font-size:13px; flex-wrap:wrap;}
+  .trust-row b{color:var(--teal-dark); font-family:'Rakkas',serif; font-size:20px; display:block;}
+
+  /* hero live widget - signature */
+  .hero-widget{
+    background:var(--white); border-radius:20px; box-shadow:var(--shadow);
+    border:1px solid var(--line); overflow:hidden;
+  }
+  .hw-head{
+    padding:16px 18px; background:var(--teal); color:var(--white);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .hw-head span.tag{font-size:12px; background:rgba(255,255,255,0.18); padding:4px 10px; border-radius:999px;}
+  .hw-body{padding:18px; min-height:300px;}
+  .hw-req{
+    background:var(--sand-2); border-radius:12px; padding:12px 14px; font-size:14px; margin-bottom:14px;
+    border-right:4px solid var(--mango);
+  }
+  .hw-quote{
+    display:flex; gap:12px; align-items:flex-start; padding:12px 0; border-top:1px dashed var(--line);
+    opacity:0; transform:translateY(8px); animation:fadeIn .5s forwards;
+  }
+  @keyframes fadeIn{ to{opacity:1; transform:translateY(0);} }
+  .avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--teal-dark); color:var(--white);
+    display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; font-size:14px;
+  }
+  .hw-quote .name{font-weight:700; font-size:14px;}
+  .hw-quote .meta{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .hw-quote .price{font-weight:800; color:var(--maroon); font-family:'Rakkas',serif; font-size:18px; margin-right:auto; margin-inline-start:auto;}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero h1{font-size:38px;}
+  }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .step-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 22px; position:relative;
+  }
+  .step-num{
+    font-family:'Rakkas',serif; font-size:40px; color:var(--sand-2);
+    -webkit-text-stroke:1.5px var(--mango-dark);
+    position:absolute; top:14px; left:18px;
+  }
+  .step-card h3{font-size:19px; margin:20px 0 8px; color:var(--teal-dark);}
+  .step-card p{font-size:14.5px; color:var(--ink-soft); margin:0;}
+  @media (max-width:840px){ .steps{grid-template-columns:1fr;} }
+
+  /* ---------- CATEGORIES ---------- */
+  .cat-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:16px;}
+  .cat-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 14px; text-align:center; transition:transform .15s, box-shadow .15s, border-color .15s;
+  }
+  .cat-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--teal);}
+  .cat-icon{
+    width:52px; height:52px; border-radius:50%; margin:0 auto 12px; display:flex; align-items:center; justify-content:center;
+    font-size:24px; background:var(--sand-2);
+  }
+  .cat-card h4{font-size:15px; margin:0 0 4px;}
+  .cat-card span{font-size:12px; color:var(--ink-soft);}
+  @media (max-width:900px){ .cat-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:600px){ .cat-grid{grid-template-columns:repeat(2,1fr);} }
+
+  /* ---------- REQUEST FORM ---------- */
+  .panel{
+    background:var(--white); border:1px solid var(--line); border-radius:20px; box-shadow:var(--shadow);
+    padding:34px; max-width:760px; margin:0 auto;
+  }
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .form-grid .full{grid-column:1 / -1;}
+  label{display:block; font-size:13.5px; font-weight:700; color:var(--ink-soft); margin-bottom:6px;}
+  input, select, textarea{
+    width:100%; padding:12px 14px; border-radius:10px; border:1.5px solid var(--line);
+    font-family:inherit; font-size:14.5px; background:var(--sand); color:var(--ink);
+  }
+  input:focus, select:focus, textarea:focus{border-color:var(--teal); background:var(--white);}
+  textarea{resize:vertical; min-height:90px;}
+  .field{margin-bottom:0;}
+  @media (max-width:640px){ .form-grid{grid-template-columns:1fr;} }
+
+  /* ---------- MATCHING / LOADING ---------- */
+  .matching{
+    text-align:center; padding:50px 20px;
+  }
+  .spinner{
+    width:64px; height:64px; margin:0 auto 22px; border-radius:50%;
+    border:6px solid var(--sand-2); border-top-color:var(--maroon);
+    animation:spin 0.9s linear infinite;
+  }
+  @keyframes spin{ to{transform:rotate(360deg);} }
+  .matching h3{font-size:22px; margin-bottom:6px;}
+  .matching p{color:var(--ink-soft);}
+
+  /* ---------- QUOTES THREAD ---------- */
+  .thread-head{
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:14px; margin-bottom:24px;
+  }
+  .thread-head h2{margin:0; font-size:28px;}
+  .benchmark-note{
+    font-size:13px; background:var(--sand-2); padding:10px 14px; border-radius:10px; color:var(--ink-soft);
+    border-right:4px solid var(--teal);
+  }
+  .quote-list{display:flex; flex-direction:column; gap:16px;}
+  .quote-card{
+    background:var(--white); border:1px solid var(--line); border-radius:16px; padding:20px;
+    display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:center;
+  }
+  .qc-avatar{
+    width:56px; height:56px; border-radius:14px; background:var(--teal-dark); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px; font-family:'Rakkas',serif;
+  }
+  .qc-name{font-weight:800; font-size:16.5px; display:flex; align-items:center; gap:8px;}
+  .badge{font-size:11px; padding:2px 9px; border-radius:999px; font-weight:700;}
+  .badge-verified{background:rgba(14,92,85,0.12); color:var(--teal-dark);}
+  .badge-good{background:rgba(14,92,85,0.14); color:var(--teal-dark);}
+  .badge-high{background:rgba(166,64,44,0.13); color:var(--maroon-dark);}
+  .qc-meta{font-size:13px; color:var(--ink-soft); margin-top:4px; display:flex; gap:14px; flex-wrap:wrap;}
+  .stars{color:var(--mango-dark); font-size:13px; letter-spacing:1px;}
+  .qc-price-box{text-align:center;}
+  .qc-price{font-family:'Rakkas',serif; font-size:24px; color:var(--maroon);}
+  .qc-price small{display:block; font-family:'Cairo',sans-serif; font-size:11px; color:var(--ink-soft); font-weight:600;}
+  .qc-actions{display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+  @media (max-width:700px){
+    .quote-card{grid-template-columns:1fr; text-align:center;}
+    .qc-name{justify-content:center;}
+    .qc-meta{justify-content:center;}
+  }
+
+  /* ---------- DASHBOARD ---------- */
+  .tabs{display:flex; gap:8px; margin-bottom:26px; flex-wrap:wrap;}
+  .tab-btn{
+    background:var(--sand-2); border:1px solid var(--line); padding:9px 18px; border-radius:999px; font-weight:700; font-size:13.5px; color:var(--ink-soft);
+  }
+  .tab-btn.active{background:var(--teal); color:#fff; border-color:var(--teal);}
+  .req-row{
+    background:var(--white); border:1px solid var(--line); border-radius:12px; padding:16px 18px;
+    display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap;
+  }
+  .status-pill{font-size:12px; padding:5px 12px; border-radius:999px; font-weight:700;}
+  .status-open{background:rgba(227,162,60,0.18); color:var(--mango-dark);}
+  .status-booked{background:rgba(14,92,85,0.16); color:var(--teal-dark);}
+  .empty-state{
+    text-align:center; padding:50px 20px; color:var(--ink-soft); border:1.5px dashed var(--line); border-radius:16px;
+  }
+
+  /* ---------- PROVIDER / TESTIMONIALS ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;}
+  @media (max-width:900px){ .split{grid-template-columns:1fr;} }
+  .perk{display:flex; gap:14px; margin-bottom:20px;}
+  .perk-ic{
+    width:38px; height:38px; border-radius:10px; background:var(--sand-2); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+  }
+  .perk h4{margin:0 0 4px; font-size:15.5px;}
+  .perk p{margin:0; font-size:13.5px; color:var(--ink-soft);}
+
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:900px){ .testi-grid{grid-template-columns:1fr;} }
+  .testi-card{background:var(--white); border:1px solid var(--line); border-radius:16px; padding:22px;}
+  .testi-card .stars{margin-bottom:10px;}
+  .testi-card p{font-size:14.5px; color:var(--ink); margin:0 0 14px;}
+  .testi-who{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-soft);}
+
+  /* ---------- TECHNICIANS DIRECTORY ---------- */
+  .tech-toolbar{
+    display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-bottom:10px;
+    background:var(--white); border:1px solid var(--line); border-radius:16px; padding:16px 18px;
+  }
+  .tech-toolbar input[type="text"]{max-width:280px;}
+  .chip-row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px;}
+  .chip{
+    background:var(--sand-2); border:1px solid var(--line); padding:8px 16px; border-radius:999px;
+    font-size:13.5px; font-weight:700; color:var(--ink-soft); display:flex; align-items:center; gap:6px;
+  }
+  .chip.active{background:var(--teal); color:#fff; border-color:var(--teal);}
+  .tech-count{font-size:13.5px; color:var(--ink-soft); margin-bottom:18px;}
+  .tech-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:980px){ .tech-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:640px){ .tech-grid{grid-template-columns:1fr;} }
+  .tech-card{
+    background:var(--white); border:1px solid var(--line); border-radius:18px; padding:20px;
+    display:flex; flex-direction:column; gap:12px; transition:transform .15s, box-shadow .15s;
+  }
+  .tech-card:hover{transform:translateY(-3px); box-shadow:var(--shadow);}
+  .tech-top{display:flex; gap:14px; align-items:flex-start;}
+  .tech-photo{
+    width:64px; height:64px; border-radius:16px; flex-shrink:0; overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,0.12);
+  }
+  .tech-photo svg{width:100%; height:100%; display:block;}
+  .tech-name-row{display:flex; align-items:center; gap:6px; flex-wrap:wrap;}
+  .tech-name-row .name{font-weight:800; font-size:16px;}
+  .tech-cat{font-size:12.5px; color:var(--teal-dark); font-weight:700; margin-top:2px;}
+  .tech-meta-row{display:flex; gap:12px; flex-wrap:wrap; font-size:12.5px; color:var(--ink-soft); margin-top:6px;}
+  .tech-bio{font-size:13px; color:var(--ink-soft); margin:0; border-top:1px dashed var(--line); padding-top:10px;}
+  .tech-price-range{font-size:13px; font-weight:700; color:var(--maroon);}
+  .tech-phone-row{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    background:var(--sand-2); border-radius:10px; padding:9px 12px; font-weight:800; font-size:14.5px;
+    direction:ltr; text-align:left;
+  }
+  .tech-phone-row span.lbl{direction:rtl; font-weight:700; font-size:12px; color:var(--ink-soft);}
+  .tech-actions-row{display:flex; gap:8px;}
+  .tech-actions-row .btn{flex:1; justify-content:center;}
+  .exp-badge{font-size:11px; background:rgba(227,162,60,0.18); color:var(--mango-dark); padding:2px 9px; border-radius:999px; font-weight:700;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--teal-dark); color:rgba(255,255,255,0.88); padding:54px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:30px; margin-bottom:34px;}
+  footer h3{color:#fff; font-family:'Rakkas',serif; font-size:24px; margin:0 0 10px;}
+  footer p{font-size:13.5px; color:rgba(255,255,255,0.7); max-width:280px;}
+  footer h5{font-size:13px; color:#fff; margin:0 0 12px;}
+  footer ul{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:9px;}
+  footer a{font-size:13.5px; color:rgba(255,255,255,0.75);}
+  footer a:hover{color:var(--mango);}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.15); padding-top:18px; font-size:12.5px; color:rgba(255,255,255,0.6); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+  @media (max-width:800px){ .footer-grid{grid-template-columns:1fr 1fr;} }
+
+  /* ---------- MODAL / TOAST ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(20,18,12,0.55); display:none; align-items:center; justify-content:center; padding:20px; z-index:100;
+  }
+  .overlay.show{display:flex;}
+  .modal{
+    background:var(--white); border-radius:18px; max-width:460px; width:100%; padding:30px; text-align:center; box-shadow:var(--shadow);
+    position:relative;
+  }
+  .modal .big-check{
+    width:64px; height:64px; border-radius:50%; background:rgba(14,92,85,0.12); color:var(--teal-dark);
+    display:flex; align-items:center; justify-content:center; font-size:32px; margin:0 auto 16px;
+  }
+  .modal h3{margin:0 0 8px; font-size:22px;}
+  .modal p{color:var(--ink-soft); font-size:14.5px; margin-bottom:22px;}
+  .modal-close{
+    position:absolute; top:14px; left:14px; background:none; border:none; font-size:20px; color:var(--ink-soft);
+  }
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); opacity:0;
+    background:var(--ink); color:#fff; padding:14px 26px; border-radius:10px; font-size:14px; z-index:200;
+    transition:opacity .25s, transform .25s; pointer-events:none;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  .page{display:none;}
+  .page.active{display:block;}
+  .hidden{display:none !important;}
+
+  .center-cta{text-align:center; margin-top:36px;}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="site">
+  <nav class="wrap">
+    <a href="#" class="logo" data-nav="home"><span class="dot"></span> زبّطها</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#" data-nav="home">الرئيسية</a>
+      <a href="#" data-nav="browse">الخدمات</a>
+      <a href="#" data-nav="technicians">دليل الفنيين</a>
+      <a href="#" data-nav="request">اطلب عرض سعر</a>
+      <a href="#" data-nav="dashboard">طلباتي</a>
+      <a href="#" data-nav="provider">انضم كمزوّد خدمة</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <button class="nav-cta" data-nav="request">اطلب عرض سعر الآن</button>
+      <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة">☰</button>
+    </div>
+  </nav>
+  <div class="stripe-thin"></div>
+</header>
+
+<!-- ================= HOME PAGE ================= -->
+<main id="page-home" class="page active">
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">🇪🇬 مصمم لسوق الخدمات المصري</span>
+        <h1>اطلب مرة واحدة… <span>يردّ عليك كل الحرفية</span></h1>
+        <p class="lead">مش هتتصل بعشر ورش وتكرر نفس الكلام. اكتب طلبك مرة واحدة على "زبّطها"، والفنيين والشركات القريبة منك يبعتوا عروض أسعارهم في مكان واحد، وانت تختار وتحجز بضغطة.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" data-nav="request">📝 اطلب عرض سعر مجاناً</button>
+          <button class="btn btn-outline" data-nav="browse">استعرض الخدمات</button>
+        </div>
+        <div class="trust-row">
+          <div><b>+2,400</b> طلب تم إنجازه</div>
+          <div><b>+650</b> فني ومزوّد خدمة موثّق</div>
+          <div><b>٤.٧ ⭐</b> تقييم متوسط للمزودين</div>
+        </div>
+      </div>
+
+      <div class="hero-widget">
+        <div class="hw-head">
+          <div>📦 نقل عفش – من فيصل إلى مدينة نصر</div>
+          <span class="tag">مباشر الآن</span>
+        </div>
+        <div class="hw-body" id="heroWidgetBody">
+          <div class="hw-req">شقة غرفتين، الطلوب سلم، محتاج نقل يوم الخميس الساعة ٤ العصر.</div>
+          <!-- quotes injected by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe-divider"></div>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">إزاي تستخدم زبّطها</span>
+        <h2>من الطلب للحجز في ٣ خطوات</h2>
+        <p>مصمم عشان توفر وقتك وتقارن بسهولة، من غير مكالمات مكررة.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>اكتب طلبك</h3>
+          <p>اختار نوع الخدمة، اوصف اللي محتاجه، والمكان والميعاد المفضل عندك.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>استقبل العروض</h3>
+          <p>الفنيين القريبين من منطقتك يبعتوا أسعارهم في ثريد واحد، بالتقييمات ومواعيد التوفر.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>قارن واحجز</h3>
+          <p>قارن السعر والتقييم، وكلّم اللي يعجبك، واحجز جوه التطبيق مباشرة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section style="background:var(--sand-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">الخدمات المتاحة</span>
+        <h2>كل الخدمات اللي البيت المصري محتاجها</h2>
+        <p>اختار القسم وابدأ تطلب عرض سعر فوراً.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </section>
+
+  <!-- WHY DIFFERENT -->
+  <section>
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">ليه زبّطها مختلفة</span>
+        <h2 style="font-size:30px; margin:12px 0;">مش تطبيق توصيل.. ده سوق عروض أسعار</h2>
+        <p style="color:var(--ink-soft); margin-bottom:22px;">تطبيقات التوصيل مناسبة لطلبات ثابتة (أكل، عربيات). لكن الخدمات اللي بتحصل مرة كل فترة - عفش، تكييف، مدرّس - محتاجة تفاوض ومقارنة، وده اللي زبّطها اتصمم عليه.</p>
+        <div class="perk">
+          <div class="perk-ic">💬</div>
+          <div><h4>عروض حقيقية، مش سعر ثابت</h4><p>كل مزوّد يبعت سعره الخاص على حسب طلبك، وتقدر تتفاوض في الشات.</p></div>
+        </div>
+        <div class="perk">
+          <div class="perk-ic">🧭</div>
+          <div><h4>مطابقة حسب المنطقة</h4><p>بنوصلك بأقرب الفنيين لمنطقتك أولاً لتوفير وقت الوصول والتكلفة.</p></div>
+        </div>
+        <div class="perk">
+          <div class="perk-ic">📊</div>
+          <div><h4>تحليل أسعار بالذكاء الاصطناعي</h4><p>بنقولك لو عرض سعر معين أعلى أو أقل من متوسط السوق قبل ما تقرر.</p></div>
+        </div>
+      </div>
+      <div class="panel" style="padding:26px;">
+        <h3 style="margin-top:0; font-size:19px; color:var(--teal-dark);">مقارنة سريعة</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:14px;">
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:10px 0; color:var(--ink-soft);">نوع الطلب</td><td style="font-weight:700;">خدمات غير دورية (عفش، سباك، تصوير)</td></tr>
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:10px 0; color:var(--ink-soft);">السعر</td><td style="font-weight:700;">عروض متعددة قابلة للتفاوض</td></tr>
+          <tr style="border-bottom:1px solid var(--line);"><td style="padding:10px 0; color:var(--ink-soft);">وقت الرد</td><td style="font-weight:700;">من ١٠ دقايق لساعتين</td></tr>
+          <tr><td style="padding:10px 0; color:var(--ink-soft);">الهدف</td><td style="font-weight:700;">أفضل سعر + أفضل تقييم لمرة واحدة</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe-divider"></div>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">تجارب حقيقية</span>
+        <h2>ناس زبّطت طلبها وهي مطمّنة</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>"طلبت نقل عفش الصبح، وقبل الضهر كان عندي ٤ عروض. وفرت عليا كذا مكالمة ووقت كبير."</p>
+          <div class="testi-who"><div class="avatar" style="width:32px;height:32px;font-size:12px;">م</div> مروة، مدينة نصر</div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <p>"لقيت مدرّس رياضيات لابني بأسعار متقاربة، وقارنت التقييمات واخترت اللي يناسبني."</p>
+          <div class="testi-who"><div class="avatar" style="width:32px;height:32px;font-size:12px;">ك</div> كريم، الشيخ زايد</div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★☆</div>
+          <p>"بصفتي فني تكييف، بقيت بستقبل طلبات جاهزة من غير ما أعمل دعاية بنفسي."</p>
+          <div class="testi-who"><div class="avatar" style="width:32px;height:32px;font-size:12px;">ي</div> يوسف، فني تكييف موثّق</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--teal-dark); text-align:center; color:#fff;">
+    <div class="wrap">
+      <h2 style="color:#fff; font-size:30px;">جاهز تزبّط طلبك؟</h2>
+      <p style="color:rgba(255,255,255,0.8); margin-bottom:24px;">اطلب عرض سعر دلوقتي، أو سجّل كمزوّد خدمة واستقبل طلبات فعلاً.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <button class="btn" style="background:var(--mango); color:var(--ink);" data-nav="request">اطلب عرض سعر</button>
+        <button class="btn" style="background:transparent; border:2px solid rgba(255,255,255,0.4); color:#fff;" data-nav="provider">انضم كمزوّد خدمة</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= BROWSE PAGE ================= -->
+<main id="page-browse" class="page">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">استعرض الخدمات</span>
+        <h2>اختار القسم المناسب لطلبك</h2>
+        <p>دوس على أي خدمة عشان تبدأ تطلب عرض سعر مباشرة بنفس التصنيف.</p>
+      </div>
+      <div class="cat-grid" id="catGridBrowse"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= TECHNICIANS DIRECTORY PAGE ================= -->
+<main id="page-technicians" class="page">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">دليل الفنيين ومزودي الخدمة</span>
+        <h2>تصفّح الفنيين حسب التخصص</h2>
+        <p>شوف صورة وتقييم وسعر تقريبي وأرقام تواصل الفنيين المتاحين، أو اطلب عرض سعر مباشرة منهم.</p>
+      </div>
+
+      <div class="tech-toolbar">
+        <input type="text" id="techSearch" placeholder="ابحث بالاسم أو المنطقة...">
+        <select id="techGovFilter">
+          <option value="">كل المحافظات</option>
+          <option>القاهرة</option>
+          <option>الجيزة</option>
+          <option>الإسكندرية</option>
+        </select>
+        <select id="techSort">
+          <option value="rating">الأعلى تقييماً</option>
+          <option value="price_asc">السعر: من الأقل للأعلى</option>
+          <option value="price_desc">السعر: من الأعلى للأقل</option>
+        </select>
+      </div>
+
+      <div class="chip-row" id="techChipRow"></div>
+      <div class="tech-count" id="techCount"></div>
+      <div class="tech-grid" id="techGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= REQUEST FORM PAGE ================= -->
+<main id="page-request" class="page">
+  <section>
+    <div class="wrap">
+      <div class="section-head" style="margin:0 auto 34px; text-align:center;">
+        <span class="eyebrow">اطلب عرض سعر</span>
+        <h2>قولنا محتاج إيه بالتفصيل</h2>
+        <p style="margin:0 auto;">كل ما وضحت التفاصيل، كل ما كانت العروض اللي توصلك أدق.</p>
+      </div>
+
+      <div class="panel" id="requestPanel">
+        <form id="requestForm">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="reqCategory">نوع الخدمة</label>
+              <select id="reqCategory" required></select>
+            </div>
+            <div class="field full">
+              <label for="reqDesc">وصف الطلب</label>
+              <textarea id="reqDesc" placeholder="مثال: شقة غرفتين وصالة، محتاج نقل من العجوزة لمدينة نصر، فيه سلم لطابقين." required></textarea>
+            </div>
+            <div class="field">
+              <label for="reqGov">المحافظة</label>
+              <select id="reqGov" required>
+                <option value="">اختر المحافظة</option>
+                <option>القاهرة</option>
+                <option>الجيزة</option>
+                <option>الإسكندرية</option>
+                <option>القليوبية</option>
+                <option>الدقهلية</option>
+                <option>الشرقية</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="reqArea">المنطقة</label>
+              <input type="text" id="reqArea" placeholder="مثال: مدينة نصر" required>
+            </div>
+            <div class="field">
+              <label for="reqDate">الميعاد المفضل</label>
+              <input type="date" id="reqDate" required>
+            </div>
+            <div class="field">
+              <label for="reqBudget">الميزانية التقريبية (جنيه)</label>
+              <input type="number" id="reqBudget" placeholder="مثال: 1500" min="0">
+            </div>
+            <div class="field">
+              <label for="reqPhone">رقم الموبايل</label>
+              <input type="tel" id="reqPhone" placeholder="01xxxxxxxxx" required>
+            </div>
+            <div class="field">
+              <label for="reqName">الاسم</label>
+              <input type="text" id="reqName" placeholder="اسمك" required>
+            </div>
+          </div>
+          <div class="center-cta">
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">أرسل الطلب واستقبل العروض 🚀</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Matching loader -->
+      <div class="panel matching hidden" id="matchingPanel">
+        <div class="spinner"></div>
+        <h3>بنبحث لك عن أقرب فنيين ومزودي خدمة...</h3>
+        <p>هيوصلوك عروض من محافظتك ومناطق قريبة خلال دقائق.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= QUOTES THREAD PAGE ================= -->
+<main id="page-quotes" class="page">
+  <section>
+    <div class="wrap">
+      <div class="thread-head">
+        <div>
+          <span class="eyebrow" id="quotesCatLabel">نقل عفش</span>
+          <h2 id="quotesTitle">وصلتك ٥ عروض على طلبك</h2>
+        </div>
+        <div class="benchmark-note" id="benchmarkNote"></div>
+      </div>
+      <div class="quote-list" id="quoteList"></div>
+      <div class="center-cta">
+        <button class="btn btn-ghost" data-nav="request">➕ اطلب عرض سعر جديد</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= DASHBOARD PAGE ================= -->
+<main id="page-dashboard" class="page">
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">حسابي</span>
+        <h2>طلباتي وحجوزاتي</h2>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="all">الكل</button>
+        <button class="tab-btn" data-tab="open">مفتوحة (تستقبل عروض)</button>
+        <button class="tab-btn" data-tab="booked">محجوزة</button>
+      </div>
+      <div id="dashList"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= PROVIDER PAGE ================= -->
+<main id="page-provider" class="page">
+  <section>
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">لمزودي الخدمة</span>
+        <h2 style="font-size:30px; margin:12px 0;">استقبل طلبات عملاء بجدّك، من غير ما تدور عليهم</h2>
+        <p style="color:var(--ink-soft); margin-bottom:26px;">سجّل بياناتك مرة واحدة، وابدأ تستقبل طلبات حقيقية من منطقتك وتخصصك، وترد عليها بعرضك في دقيقة.</p>
+        <div class="perk"><div class="perk-ic">🎯</div><div><h4>طلبات مطابقة لتخصصك ومنطقتك</h4><p>مش هتستقبل إلا الطلبات المناسبة ليك فعلاً.</p></div></div>
+        <div class="perk"><div class="perk-ic">⭐</div><div><h4>بناء سمعتك بالتقييمات</h4><p>كل عميل راضي يزوّد تقييمك ويجيبلك طلبات أكتر.</p></div></div>
+        <div class="perk"><div class="perk-ic">💳</div><div><h4>عمولة بسيطة فقط عند الحجز الفعلي</h4><p>مفيش اشتراك شهري. بتدفع بس لما تقفل صفقة.</p></div></div>
+      </div>
+      <div class="panel">
+        <h3 style="margin-top:0; color:var(--teal-dark); font-size:20px;">سجّل كمزوّد خدمة</h3>
+        <form id="providerForm">
+          <div class="form-grid">
+            <div class="field full">
+              <label for="provName">الاسم / اسم الورشة</label>
+              <input type="text" id="provName" required>
+            </div>
+            <div class="field full">
+              <label for="provCategory">التخصص</label>
+              <select id="provCategory" required></select>
+            </div>
+            <div class="field">
+              <label for="provGov">المحافظة</label>
+              <select id="provGov" required>
+                <option value="">اختر المحافظة</option>
+                <option>القاهرة</option>
+                <option>الجيزة</option>
+                <option>الإسكندرية</option>
+                <option>القليوبية</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="provPhone">رقم الموبايل</label>
+              <input type="tel" id="provPhone" placeholder="01xxxxxxxxx" required>
+            </div>
+          </div>
+          <div class="center-cta">
+            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">سجّل الآن</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>زبّطها</h3>
+        <p>منصة مصرية تجمع طلبات الخدمات المنزلية والمحلية مع عروض أسعار الفنيين ومزودي الخدمة في مكان واحد.</p>
+      </div>
+      <div>
+        <h5>الشركة</h5>
+        <ul><li><a href="#" data-nav="home">من نحن</a></li><li><a href="#">وظائف</a></li><li><a href="#">تواصل معنا</a></li></ul>
+      </div>
+      <div>
+        <h5>للعملاء</h5>
+        <ul><li><a href="#" data-nav="request">اطلب عرض سعر</a></li><li><a href="#" data-nav="browse">الخدمات</a></li><li><a href="#" data-nav="dashboard">طلباتي</a></li></ul>
+      </div>
+      <div>
+        <h5>للمزودين</h5>
+        <ul><li><a href="#" data-nav="provider">انضم كمزوّد خدمة</a></li><li><a href="#">مركز المساعدة</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 زبّطها. جميع الحقوق محفوظة.</span>
+      <span>نموذج تجريبي (Prototype) لأغراض العرض فقط.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MODAL & TOAST ================= -->
+<div class="overlay" id="bookingOverlay">
+  <div class="modal">
+    <button class="modal-close" id="closeModal">✕</button>
+    <div class="big-check">✔</div>
+    <h3>تم تأكيد الحجز!</h3>
+    <p id="bookingModalText">هنبعتلك تفاصيل الحجز على رسالة نصية، والمزوّد هيتواصل معاك قريب.</p>
+    <button class="btn btn-primary" id="modalDashboardBtn" style="width:100%; justify-content:center;">اذهب لطلباتي</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ======================= DATA ======================= */
+const CATEGORIES = [
+  {id:'moving', icon:'📦', name:'نقل عفش', desc:'شقق، مكاتب، عفش خفيف وثقيل'},
+  {id:'tutor', icon:'📚', name:'مدرّس خصوصي', desc:'كل المراحل والمواد'},
+  {id:'plumber', icon:'🔧', name:'سباك', desc:'تسريبات، تركيبات، صيانة'},
+  {id:'electrician', icon:'💡', name:'كهربائي', desc:'أعطال، تمديدات، لمبات LED'},
+  {id:'ac', icon:'❄️', name:'فني تكييف', desc:'تركيب، صيانة، شحن فريون'},
+  {id:'photo', icon:'📷', name:'مصوّر', desc:'مناسبات، بورتريه، منتجات'},
+  {id:'carpenter', icon:'🪚', name:'نجار', desc:'أثاث، أبواب، تفصيل خشب'},
+  {id:'painter', icon:'🎨', name:'نقاش / رسام', desc:'دهانات وديكورات'},
+  {id:'cleaning', icon:'🧹', name:'تنظيف منازل', desc:'تنظيف شامل ودوري'},
+  {id:'events', icon:'🎉', name:'تنظيم حفلات', desc:'أعراس، عيد ميلاد، مناسبات'},
+];
+
+const NAMES = ['أحمد سعيد','محمد عبد الله','كريم فتحي','سارة منصور','منى الجندي','حسن إبراهيم','ياسمين طارق','عمرو الشريف','هدى نبيل','يوسف رمزي'];
+const AREAS = ['مدينة نصر','المهندسين','الدقي','مصر الجديدة','٦ أكتوبر','الشيخ زايد','المعادي','فيصل','العجوزة','حلوان'];
+
+let requestIdSeq = 1;
+const myRequests = []; // {id, category, desc, gov, area, date, budget, status, quotes:[]}
+
+/* ======================= UTIL ======================= */
+function initials(name){ return name.trim().split(' ')[0][0]; }
+function rand(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function pick(arr){ return arr[rand(0,arr.length-1)]; }
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+function catById(id){ return CATEGORIES.find(c=>c.id===id); }
+
+/* ======================= NAV ======================= */
+function goTo(pageId){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+pageId).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('active', a.dataset.nav===pageId));
+  document.getElementById('navLinks').classList.remove('open');
+  window.scrollTo({top:0, behavior:'smooth'});
+  if(pageId==='dashboard') renderDashboard('all');
+}
+document.querySelectorAll('[data-nav]').forEach(el=>{
+  el.addEventListener('click', (e)=>{ e.preventDefault(); goTo(el.dataset.nav); });
+});
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ======================= RENDER CATEGORIES ======================= */
+function renderCategoryGrid(containerId, onClickGoRequest){
+  const el = document.getElementById(containerId);
+  el.innerHTML = CATEGORIES.map(c=>`
+    <div class="cat-card" data-cat="${c.id}" role="button" tabindex="0">
+      <div class="cat-icon">${c.icon}</div>
+      <h4>${c.name}</h4>
+      <span>${c.desc}</span>
+    </div>`).join('');
+  el.querySelectorAll('.cat-card').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      goTo('request');
+      document.getElementById('reqCategory').value = card.dataset.cat;
+    });
+  });
+}
+renderCategoryGrid('catGrid');
+renderCategoryGrid('catGridBrowse');
+
+/* fill category selects */
+function fillCategorySelect(sel){
+  sel.innerHTML = '<option value="">اختر نوع الخدمة</option>' +
+    CATEGORIES.map(c=>`<option value="${c.id}">${c.icon} ${c.name}</option>`).join('');
+}
+fillCategorySelect(document.getElementById('reqCategory'));
+fillCategorySelect(document.getElementById('provCategory'));
+
+/* ======================= HERO LIVE WIDGET (ambient demo) ======================= */
+(function heroWidget(){
+  const body = document.getElementById('heroWidgetBody');
+  const sample = [
+    {name:'شركة النقل الأمين', price:850, meta:'مدينة نصر · متاح النهاردة'},
+    {name:'ورشة سريع موڤرز', price:700, meta:'العباسية · متاح بكرة'},
+    {name:'فريق كرم للنقليات', price:1150, meta:'مصر الجديدة · متاح الخميس'},
+  ];
+  let i=0;
+  function addOne(){
+    if(i>=sample.length){ i=0; body.querySelectorAll('.hw-quote').forEach(n=>n.remove()); }
+    const q = sample[i++];
+    const div = document.createElement('div');
+    div.className='hw-quote';
+    div.innerHTML = `<div class="avatar">${initials(q.name)}</div>
+      <div><div class="name">${q.name}</div><div class="meta">${q.meta}</div></div>
+      <div class="price">${q.price} <small style="font-family:'Cairo';font-size:10px;">جنيه</small></div>`;
+    body.appendChild(div);
+  }
+  addOne();
+  setInterval(addOne, 2600);
+})();
+
+/* ======================= GENERATE MOCK QUOTES ======================= */
+function generateQuotes(categoryId, budget){
+  const base = budget && budget>0 ? budget : rand(300,2500);
+  const count = rand(3,5);
+  const used = new Set();
+  const quotes = [];
+  for(let k=0;k<count;k++){
+    let name;
+    do{ name = pick(NAMES); }while(used.has(name));
+    used.add(name);
+    const variance = rand(-25,35)/100; // -25% to +35%
+    const price = Math.max(150, Math.round(base*(1+variance)/10)*10);
+    quotes.push({
+      name,
+      area: pick(AREAS),
+      rating: (rand(38,50)/10).toFixed(1),
+      reviews: rand(8,240),
+      responseTime: pick(['خلال ١٠ دقايق','خلال ٣٠ دقيقة','خلال ساعة','خلال ساعتين']),
+      price,
+      verified: Math.random()>0.35,
+    });
+  }
+  quotes.sort((a,b)=>a.price-b.price);
+  return quotes;
+}
+
+/* ======================= REQUEST FORM SUBMIT ======================= */
+document.getElementById('requestForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const categoryId = document.getElementById('reqCategory').value;
+  const desc = document.getElementById('reqDesc').value;
+  const gov = document.getElementById('reqGov').value;
+  const area = document.getElementById('reqArea').value;
+  const date = document.getElementById('reqDate').value;
+  const budget = parseInt(document.getElementById('reqBudget').value)||0;
+
+  document.getElementById('requestPanel').classList.add('hidden');
+  document.getElementById('matchingPanel').classList.remove('hidden');
+
+  setTimeout(()=>{
+    const quotes = generateQuotes(categoryId, budget);
+    const reqObj = {
+      id: requestIdSeq++,
+      categoryId, desc, gov, area, date, budget,
+      status:'open',
+      quotes,
+    };
+    myRequests.unshift(reqObj);
+    showQuotesPage(reqObj);
+    document.getElementById('matchingPanel').classList.add('hidden');
+    document.getElementById('requestPanel').classList.remove('hidden');
+    document.getElementById('requestForm').reset();
+  }, 1600);
+});
+
+/* ======================= QUOTES PAGE RENDER ======================= */
+let activeRequestId = null;
+
+function showQuotesPage(reqObj){
+  activeRequestId = reqObj.id;
+  const cat = catById(reqObj.categoryId) || {name:'خدمة', icon:'🛠️'};
+  document.getElementById('quotesCatLabel').textContent = `${cat.icon} ${cat.name}`;
+  document.getElementById('quotesTitle').textContent = `وصلتك ${reqObj.quotes.length} عروض على طلبك`;
+
+  const avg = Math.round(reqObj.quotes.reduce((s,q)=>s+q.price,0)/reqObj.quotes.length);
+  document.getElementById('benchmarkNote').innerHTML = `🤖 <b>متوسط السعر في منطقتك:</b> حوالي ${avg} جنيه لهذا النوع من الخدمة`;
+
+  const list = document.getElementById('quoteList');
+  list.innerHTML = reqObj.quotes.map((q, idx)=>{
+    const diff = Math.round(((q.price-avg)/avg)*100);
+    let badge = '';
+    if(diff <= -8) badge = `<span class="badge badge-good">أقل من المتوسط بـ${Math.abs(diff)}٪</span>`;
+    else if(diff >= 12) badge = `<span class="badge badge-high">أعلى من المتوسط بـ${diff}٪</span>`;
+    return `
+    <div class="quote-card">
+      <div class="qc-avatar">${initials(q.name)}</div>
+      <div>
+        <div class="qc-name">${q.name} ${q.verified?'<span class="badge badge-verified">✔ موثّق</span>':''} ${badge}</div>
+        <div class="qc-meta">
+          <span class="stars">${'★'.repeat(Math.round(q.rating))}${'☆'.repeat(5-Math.round(q.rating))} ${q.rating} (${q.reviews})</span>
+          <span>📍 ${q.area}</span>
+          <span>⏱ يرد ${q.responseTime}</span>
+        </div>
+      </div>
+      <div>
+        <div class="qc-price-box">
+          <div class="qc-price">${q.price}<small> جنيه</small></div>
+        </div>
+        <div class="qc-actions">
+          <button class="btn btn-primary btn-sm" onclick="bookProvider(${reqObj.id}, ${idx})">احجز الآن</button>
+          <button class="btn btn-ghost btn-sm" onclick="messageProvider('${q.name.replace(/'/g,"")}')">راسله</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  goTo('quotes');
+}
+
+function messageProvider(name){
+  toast(`💬 فتح شات تجريبي مع ${name} (نموذج عرض فقط)`);
+}
+
+function bookProvider(reqId, quoteIdx){
+  const reqObj = myRequests.find(r=>r.id===reqId);
+  if(!reqObj) return;
+  reqObj.status = 'booked';
+  reqObj.bookedQuote = reqObj.quotes[quoteIdx];
+  document.getElementById('bookingModalText').textContent =
+    `تم حجز "${reqObj.bookedQuote.name}" بسعر ${reqObj.bookedQuote.price} جنيه. هيتواصل معاك على رقمك المسجل لتأكيد الميعاد.`;
+  document.getElementById('bookingOverlay').classList.add('show');
+}
+
+document.getElementById('closeModal').addEventListener('click', ()=>{
+  document.getElementById('bookingOverlay').classList.remove('show');
+});
+document.getElementById('modalDashboardBtn').addEventListener('click', ()=>{
+  document.getElementById('bookingOverlay').classList.remove('show');
+  goTo('dashboard');
+});
+
+/* ======================= DASHBOARD ======================= */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderDashboard(btn.dataset.tab);
+  });
+});
+
+function renderDashboard(filter){
+  const listEl = document.getElementById('dashList');
+  let items = myRequests;
+  if(filter==='open') items = myRequests.filter(r=>r.status==='open');
+  if(filter==='booked') items = myRequests.filter(r=>r.status==='booked');
+
+  if(items.length===0){
+    listEl.innerHTML = `<div class="empty-state">لسه معملتش أي طلب. <br><button class="btn btn-primary btn-sm" style="margin-top:12px;" data-nav="request">اطلب عرض سعر الآن</button></div>`;
+    listEl.querySelector('[data-nav]')?.addEventListener('click', (e)=>{ e.preventDefault(); goTo('request'); });
+    return;
+  }
+
+  listEl.innerHTML = items.map(r=>{
+    const cat = catById(r.categoryId) || {name:'خدمة', icon:'🛠️'};
+    const statusHtml = r.status==='open'
+      ? `<span class="status-pill status-open">مستقبل ${r.quotes.length} عروض</span>`
+      : `<span class="status-pill status-booked">محجوز · ${r.bookedQuote?.name||''}</span>`;
+    return `
+    <div class="req-row">
+      <div>
+        <div style="font-weight:800;">${cat.icon} ${cat.name} — ${r.area||r.gov||''}</div>
+        <div style="font-size:13px; color:var(--ink-soft); margin-top:4px;">${(r.desc||'').slice(0,70)}${(r.desc||'').length>70?'…':''}</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        ${statusHtml}
+        <button class="btn btn-outline btn-sm" onclick='reopenQuotes(${r.id})'>عرض التفاصيل</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function reopenQuotes(id){
+  const reqObj = myRequests.find(r=>r.id===id);
+  if(reqObj) showQuotesPage(reqObj);
+}
+
+/* ======================= PROVIDER FORM ======================= */
+document.getElementById('providerForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('provName').value;
+  document.getElementById('providerForm').reset();
+  toast(`🎉 تم استقبال بيانات "${name}"! هيتم مراجعة حسابك والتواصل معاك قريب.`);
+});
+
+/* ======================= AVATAR (generated illustration, not a real photo) ======================= */
+const AVATAR_PALETTES = [
+  ['#0E5C55','#12756C'], ['#A6402C','#C1502F'], ['#E3A23C','#C4811F'],
+  ['#57503F','#7A7159'], ['#0A423C','#0E5C55'], ['#7E2E1F','#A6402C'],
+];
+function hashStr(str){
+  let h=0; for(let i=0;i<str.length;i++){ h = (h*31 + str.charCodeAt(i))>>>0; } return h;
+}
+function avatarSVG(name, seed){
+  const h = hashStr(name+seed);
+  const [c1,c2] = AVATAR_PALETTES[h % AVATAR_PALETTES.length];
+  const init = initials(name);
+  return `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <defs><linearGradient id="g${h}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/>
+    </linearGradient></defs>
+    <rect width="64" height="64" fill="url(#g${h})"/>
+    <circle cx="32" cy="25" r="12" fill="rgba(255,255,255,0.85)"/>
+    <path d="M10 62 C10 46 20 40 32 40 C44 40 54 46 54 62 Z" fill="rgba(255,255,255,0.85)"/>
+    <text x="32" y="58" font-family="Cairo, sans-serif" font-size="13" font-weight="800" fill="${c1}" text-anchor="middle" opacity="0"> </text>
+  </svg>`;
+}
+
+/* ======================= TECHNICIANS DIRECTORY DATA ======================= */
+const BIOS = [
+  'شغل نضيف وضمان على كل حاجة بيسلمها.',
+  'خبرة طويلة في التعامل مع كل الحالات، بسعر مناسب.',
+  'بيلتزم بالميعاد ومواصفات الشغل المتفق عليها.',
+  'متاح للطلبات العاجلة في نفس اليوم أحياناً.',
+  'بيوضح السعر من الأول من غير مصاريف مخفية.',
+];
+let TECHNICIANS = [];
+(function buildTechnicians(){
+  const usedPhones = new Set();
+  function genPhone(){
+    let p;
+    do{ p = '01' + pick(['0','1','2','5']) + Array.from({length:8},()=>rand(0,9)).join(''); }while(usedPhones.has(p));
+    usedPhones.add(p);
+    return p;
+  }
+  let id=1;
+  CATEGORIES.forEach(cat=>{
+    const count = rand(4,6);
+    const usedNames = new Set();
+    for(let i=0;i<count;i++){
+      let name;
+      do{ name = pick(NAMES); }while(usedNames.has(name));
+      usedNames.add(name);
+      const priceMin = rand(150,600);
+      const priceMax = priceMin + rand(200,900);
+      TECHNICIANS.push({
+        id: id++,
+        name,
+        categoryId: cat.id,
+        area: pick(AREAS),
+        gov: pick(['القاهرة','الجيزة','الإسكندرية']),
+        phone: genPhone(),
+        rating: (rand(38,50)/10).toFixed(1),
+        reviews: rand(6,320),
+        years: rand(1,15),
+        verified: Math.random()>0.3,
+        priceMin, priceMax,
+        bio: pick(BIOS),
+      });
+    }
+  });
+})();
+
+let techFilterCat = 'all';
+
+function renderTechChips(){
+  const row = document.getElementById('techChipRow');
+  const chips = [{id:'all', icon:'🗂️', name:'الكل'}, ...CATEGORIES];
+  row.innerHTML = chips.map(c=>`<button class="chip ${techFilterCat===c.id?'active':''}" data-chip="${c.id}">${c.icon||''} ${c.name}</button>`).join('');
+  row.querySelectorAll('.chip').forEach(ch=>{
+    ch.addEventListener('click', ()=>{
+      techFilterCat = ch.dataset.chip;
+      renderTechChips();
+      renderTechnicians();
+    });
+  });
+}
+
+function renderTechnicians(){
+  const search = (document.getElementById('techSearch').value||'').trim().toLowerCase();
+  const gov = document.getElementById('techGovFilter').value;
+  const sort = document.getElementById('techSort').value;
+
+  let list = TECHNICIANS.filter(t=>{
+    if(techFilterCat!=='all' && t.categoryId!==techFilterCat) return false;
+    if(gov && t.gov!==gov) return false;
+    if(search && !(t.name.toLowerCase().includes(search) || t.area.toLowerCase().includes(search))) return false;
+    return true;
+  });
+
+  if(sort==='rating') list.sort((a,b)=>b.rating-a.rating);
+  if(sort==='price_asc') list.sort((a,b)=>a.priceMin-b.priceMin);
+  if(sort==='price_desc') list.sort((a,b)=>b.priceMin-a.priceMin);
+
+  document.getElementById('techCount').textContent = `عدد النتائج: ${list.length}`;
+
+  const grid = document.getElementById('techGrid');
+  if(list.length===0){
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">مفيش نتائج مطابقة. جرّب تغيّر الفلتر أو البحث.</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map(t=>{
+    const cat = catById(t.categoryId);
+    return `
+    <div class="tech-card">
+      <div class="tech-top">
+        <div class="tech-photo">${avatarSVG(t.name, t.id)}</div>
+        <div>
+          <div class="tech-name-row">
+            <span class="name">${t.name}</span>
+            ${t.verified?'<span class="badge badge-verified">✔ موثّق</span>':''}
+            <span class="exp-badge">${t.years} سنة خبرة</span>
+          </div>
+          <div class="tech-cat">${cat.icon} ${cat.name}</div>
+          <div class="tech-meta-row">
+            <span class="stars">${'★'.repeat(Math.round(t.rating))}${'☆'.repeat(5-Math.round(t.rating))} ${t.rating} (${t.reviews})</span>
+            <span>📍 ${t.area}، ${t.gov}</span>
+          </div>
+        </div>
+      </div>
+      <div class="tech-price-range">💰 من ${t.priceMin} إلى ${t.priceMax} جنيه (تقريبي)</div>
+      <p class="tech-bio">${t.bio}</p>
+      <div class="tech-phone-row">
+        <span dir="ltr">${t.phone}</span>
+        <span class="lbl">رقم التواصل</span>
+      </div>
+      <div class="tech-actions-row">
+        <a class="btn btn-primary btn-sm" href="tel:${t.phone}">📞 اتصل الآن</a>
+        <button class="btn btn-outline btn-sm" onclick="requestFromTechnician('${t.categoryId}')">اطلب عرض سعر</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function requestFromTechnician(categoryId){
+  goTo('request');
+  document.getElementById('reqCategory').value = categoryId;
+}
+
+['techSearch','techGovFilter','techSort'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', renderTechnicians);
+  document.getElementById(id).addEventListener('change', renderTechnicians);
+});
+
+renderTechChips();
+renderTechnicians();
+
+/* ======================= INIT ======================= */
+(function setMinDate(){
+  const d = document.getElementById('reqDate');
+  const today = new Date().toISOString().split('T')[0];
+  d.setAttribute('min', today);
+})();
+
+goTo('home');
+</script>
+</body>
+</html>
